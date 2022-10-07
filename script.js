@@ -1,7 +1,7 @@
-// rootEl = $('header');
-// currentDayEl = $('#currentDay');
 
 var currentDate = moment().format("MM/DD/YY");
+var searchHistory = [];
+var  buttonList = document.querySelector('.buttonList');
 
 
 
@@ -127,10 +127,38 @@ function displayCity(){
         getWeatherInfo(cityName);
         // console.log("clicked");
         // console.log($('.cityInput').val());
+
+        //add city name to local storage on Save button 
+        searchHistory.push(cityName);
+        console.log(searchHistory);
+        localStorage.setItem("search",JSON.stringify(searchHistory));
+        createCityButton(cityName);
+
+        // createCityButton();
     });
     
 }
 
 displayCity();
 
+
+//create a button function 
+
+function createCityButton(cityName){
+    var cityButton = $('<button>');
+    var listButton = $('<li>');
+    cityButton.text(cityName);
+    listButton.append(cityButton);
+    $('.buttonList').append(listButton);
+}
+
+//get searched cities from local storage and display in a list
+
+$(document).ready(function(){
+
+})
+
+function onCityButton(){
+    
+}
 

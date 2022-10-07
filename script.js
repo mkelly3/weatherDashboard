@@ -59,6 +59,58 @@ function getWeatherInfo(cityname) {
              }
              console.log(days);
 
+             var iconDisplay = [];
+             var iconsUrls = [];
+
+             for( i =0; i<6; i++){
+                iconDisplay[i] = response.daily[i].weather[0].icon;
+             }
+
+             iconDisplay = iconDisplay.filter(item => item);
+             for(i=0; i< iconDisplay.length; i++){
+                iconsUrls[i] = "http://openweathermap.org/img/w/" + iconDisplay[i] + ".png";
+             }
+             for(i=0; i<iconsUrls.length;i++){
+                $("#icon"+i).attr({ "src": iconsUrls[i], "alt": "Daily Weather Icon" });
+             }
+
+             //finding max Temp and then looping through the five days to display it 
+             var maxTemp = [];
+             for(var i=0; i<6; i++){
+                maxTemp[i] = parseInt(response.daily[i].temp.max) + "°F";
+             }
+
+             maxTemp = maxTemp.filter(item => item);
+             for (i = 0; i < maxTemp.length; i++) {
+                $("#highTemp" + i).text("High: " + maxTemp[i]);
+            }
+            console.log(maxTemp);
+            //finding min Temp and then looping through the five days to display it 
+            var minTemp = [];
+            for(var i=0; i<6; i++){
+               minTemp[i] = parseInt(response.daily[i].temp.min) + "°F";
+            }
+            minTemp = minTemp.filter(item => item);
+            for (i = 0; i < minTemp.length; i++) {
+               $("#lowTemp" + i).text("Low: " + minTemp[i]);
+           }
+           console.log(minTemp);
+
+
+           //finding humidity for all five days and looping through the five day forecast
+
+           var fiveDayHumidity = [];
+
+           for(var i=0; i<6; i++){
+            fiveDayHumidity[i]= response.daily[i].humidity
+        
+           }
+
+           fiveDayHumidity = fiveDayHumidity.filter(item => item);
+           for(var i=0; i<fiveDayHumidity.length; i++){
+            $("#humidityDay" + i).text("Humidity: " + fiveDayHumidity[i] + "%");
+           }
+
         });
 };
 

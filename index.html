@@ -14,12 +14,11 @@
 <body>
   <header class="jumbotron bg-primary">
     <h1 class="display-3 text-center">Weather Dashboard</h1>
-    <p id="currentDay" class="lead"></p>
   </header>
 
   <div class ="container">
     <div class ="row">
-      <div class="col-4">
+      <div class="col-4" id="sidebar">
         <div class="card" style="width: 18rem;">
           <div class="card-header">
             Pick a City!
@@ -29,6 +28,15 @@
             <input class="cityInput" placeholder="Please Select a City"/>
             <hr/>
             <a href="#" class="btn btn-primary">Search Button</a>
+          </div>
+          <br/>
+          <div class="searchHistory">
+            <ul class="cityList">
+              <section>
+                <button id="search"></button>
+              </section>
+              <button class="btn btn-dark" id="clearHistory">Clear History</button>
+            </ul>
           </div>
         </div>
       </div>
@@ -46,6 +54,50 @@
             <p class="wind">Wind</p>
             <p class="humidity">Humidity</p>
           </div>
+          <hr/>
+        <div class="row fiveDay">
+          <div class="col-md-12">
+            <h2>Five day forecast</h2>
+           
+          </div>
+          <hr/>
+          <div class="col-md-2 card fiveCard">
+            <div calss="5title" id="day1">Date</div>
+            <img class="icon" id="icon1">
+            <p id="highDay1">High: </p>
+            <p id="lowDay1">Low: </p>
+            <p id="humidityDay1">Humidity: </p>
+          </div>
+          <div class="col-md-2 card fiveCard">
+            <div calss="5title" id="day1">Date</div>
+            <img class="icon" id="icon1">
+            <p id="highDay1">High: </p>
+            <p id="lowDay1">Low: </p>
+            <p id="humidityDay1">Humidity: </p>
+          </div>
+          <div class="col-md-2 card fiveCard">
+            <div calss="5title" id="day1">Date</div>
+            <img class="icon" id="icon1">
+            <p id="highDay1">High: </p>
+            <p id="lowDay1">Low: </p>
+            <p id="humidityDay1">Humidity: </p>
+          </div>
+          <div class="col-md-2 card fiveCard">
+            <div calss="5title" id="day1">Date</div>
+            <img class="icon" id="icon1">
+            <p id="highDay1">High: </p>
+            <p id="lowDay1">Low: </p>
+            <p id="humidityDay1">Humidity: </p>
+          </div>
+          <div class="col-md-2 card fiveCard">
+            <div calss="5title" id="day1">Date</div>
+            <img class="icon" id="icon1">
+            <p id="highDay1">High: </p>
+            <p id="lowDay1">Low: </p>
+            <p id="humidityDay1">Humidity: </p>
+          </div>
+
+        </div>
         </div>
         </div>
       </div>

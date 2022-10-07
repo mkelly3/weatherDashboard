@@ -146,19 +146,9 @@ displayCity();
 
 function createCityButton(cityName){
     var cityButton = $('<button>');
+    cityButton.addClass('cityBtn');
     var listButton = $('<li>');
     cityButton.text(cityName);
     listButton.append(cityButton);
     $('.buttonList').append(listButton);
 }
-
-//get searched cities from local storage and display in a list
-
-$(document).ready(function(){
-
-})
-
-function onCityButton(){
-    
-}
-

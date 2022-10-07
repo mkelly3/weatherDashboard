@@ -19,6 +19,16 @@ function searchCity(cityname) {
         method: "GET"
     }).then(function (response) {
         console.log(response);
+        var currentIcon = response.weather[0].icon;
+        var iconURl = "http://openweathermap.org/img/w/" + currentIcon + ".png"
+        console.log(iconURl);
+        
+        $('.currentTemp').text("Temperature: "+response.main.temp + " °F");
+        $('.currentWind').text("Wind: " + response.wind.speed + " MPH" );
+        $('.currentHumidity').text("Humidity: " + response.main.humidity + " %");
+        $('#weatherIcon').attr({"src":iconURl,"alt":"Current Weather Icon"});
+
+
 
 });
 }

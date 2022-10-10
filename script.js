@@ -129,10 +129,12 @@ function displayCity(){
         // console.log($('.cityInput').val());
 
         //add city name to local storage on Save button 
-        searchHistory.push(cityName);
-        console.log(searchHistory);
-        localStorage.setItem("search",JSON.stringify(searchHistory));
+        //searchHistory.push(cityName);
+        //console.log(searchHistory);
+        //localStorage.setItem('cities',searchHistory);
         createCityButton(cityName);
+        $('.cityInput').val('');
+        
 
         // createCityButton();
     });
@@ -141,14 +143,54 @@ function displayCity(){
 
 displayCity();
 
+var cityInputEl = document.querySelector('.cityInput');
 
 //create a button function 
 
 function createCityButton(cityName){
-    var cityButton = $('<button>');
-    cityButton.addClass('cityBtn');
-    var listButton = $('<li>');
-    cityButton.text(cityName);
-    listButton.append(cityButton);
-    $('.buttonList').append(listButton);
+    if(cityName) {
+        searchHistory.push(cityName);
+        localStorage.setItem('searchHistory',JSON.stringify(searchHistory));
+        var cityButton = document.createElement('button');
+        cityButton.className = 'cityBtn';
+        cityButton.setAttribute("data-city", cityName)
+        cityButton.innerHTML = cityName;
+        var listButton = document.createElement('li');
+        listButton.appendChild(cityButton);
+        buttonList.appendChild(listButton);
+        // getWeatherInfo(cityName);
+        
+    }
+    else{
+        alert('please enter a City Name');
+    }
 }
+
+//load cities from local storage
+var loadSearchedCities = function() {
+    var search = JSON.parse(localStorage.getItem("searchHistory"));
+
+    if(search){
+        searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+
+        for(var i=0; i< searchHistory.length; i++){
+            var cityButton = document.createElement('button');
+            cityButton.className = 'cityBtn';
+            cityButton.setAttribute("data-city",searchHistory[i])
+            cityButton.innerHTML = searchHistory[i];
+            var listButton = document.createElement('li');
+            listButton.appendChild(cityButton);
+            buttonList.appendChild(listButton);
+        }
+
+    }
+}
+loadSearchedCities();
+
+
+//click on search history buttons to see weather data
+
+var onSearchHistoryBtn = function(event){
+    var cityName = event.target.getAttribute()l
+}
+

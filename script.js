@@ -1,7 +1,9 @@
 
 var currentDate = moment().format("MM/DD/YY");
 var searchHistory = [];
-var  buttonList = document.querySelector('.buttonList');
+var  buttonList = document.querySelector('#buttonList');
+var searchHistoryEl = document.querySelector('.searchHistory');
+var cityInputEl = document.querySelector('.cityInput');
 
 
 
@@ -19,7 +21,9 @@ function getWeatherInfo(cityname) {
             var currentIcon = response.weather[0].icon;
             var iconURl = "http://openweathermap.org/img/w/" + currentIcon + ".png"
             console.log(iconURl);
-            
+
+             $('.cityName').text(cityname);
+            $('.timeId').text(currentDate);
             $('.currentTemp').text("Temperature: "+response.main.temp + " °F");
             $('.currentWind').text("Wind: " + response.wind.speed + " MPH" );
             $('.currentHumidity').text("Humidity: " + response.main.humidity + " %");
@@ -118,9 +122,7 @@ function getWeatherInfo(cityname) {
 function displayCity(){
 
     $(".btn").click(function(){
-        $('.cityName').text($('.cityInput').val());
-        $('.timeId').text(currentDate);
-
+       
         var cityName =$('.cityInput').val();
         // console.log(cityName);
         // searchCity(cityName);
@@ -143,7 +145,7 @@ function displayCity(){
 
 displayCity();
 
-var cityInputEl = document.querySelector('.cityInput');
+
 
 //create a button function 
 
@@ -181,6 +183,8 @@ var loadSearchedCities = function() {
             var listButton = document.createElement('li');
             listButton.appendChild(cityButton);
             buttonList.appendChild(listButton);
+        
+            
         }
 
     }
@@ -191,6 +195,23 @@ loadSearchedCities();
 //click on search history buttons to see weather data
 
 var onSearchHistoryBtn = function(event){
-    var cityName = event.target.getAttribute()l
+    var cityName = event.target.getAttribute("data-city");
+
+    if(cityName){
+        getWeatherInfo(cityName)
+    }
 }
+
+
+
+var clearBtn = document.querySelector('.clearBtn');
+function clearHistory(){
+    clearBtn.addEventListener('click',function(){
+        localStorage.removeItem('searchHistory')
+        buttonList
+    })
+}
+clearHistory();
+searchHistoryEl.addEventListener('click',onSearchHistoryBtn);
+
 
